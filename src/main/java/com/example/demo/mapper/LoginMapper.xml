@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.LoginMapper">
+
+    <resultMap id="BaseResultMap" type="com.example.demo.entity.Login">
+        <result column="administrator" property="administrator" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        administrator, password
+    </sql>
+
+    <select id="loginUser" resultMap="BaseResultMap" parameterType="com.example.demo.entity.Login">
+        select
+        <include refid="Base_Column_List"/>
+        from login
+        where administrator = #{administrator,jdbcType=VARCHAR}
+        and password = #{password,jdbcType=VARCHAR}
+    </select>
+</mapper>   
+ 
